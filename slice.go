@@ -5,32 +5,36 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
 )
 
 func main() {
-	var input int
+	var input string
 	mySlice := make([]int, 3)
 	sum := 0
-	for i := 1; i < len(mySlice)+1; i++ {
+	for i := 1; i < len(mySlice)+2; i++ { // This is pretty ugly
 		fmt.Printf("Enter in an integer: ")
 		fmt.Scan(&input)
 		// Add the integer to the slice
 		// Sort the slice
 		fmt.Println(fmt.Sprintf("Sum: %d", sum))
-		if input == 555 {
+		if input == "X" {
 			break
 		} else {
-			mySlice = append(mySlice, input)
-			fmt.Println(fmt.Sprintf("You added: %d", input))
-			sort.Ints(mySlice)
-			fmt.Println(fmt.Sprintf("Updated sorted list: %d", mySlice))
-			sum++
+			if intinput, err := strconv.Atoi(input); err == nil {
+				mySlice = append(mySlice, intinput)
+				if i <= 3 { //This will break the loop if we delete 3. keeping at 2 so you can see it work.
+					mySlice = mySlice[1:4]
+				}
+
+				fmt.Println(fmt.Sprintf("You added: %d", intinput))
+				sort.Ints(mySlice)
+				sum++
+			} else {
+				fmt.Println(intinput, " is not an integer")
+			}
 		}
+		fmt.Println(fmt.Sprintf("Updated sorted list: %d", mySlice))
 	}
-
-	// begin loop
-
-	// Or exit if the user has typed in 'X'
-	// end loop
 
 }
