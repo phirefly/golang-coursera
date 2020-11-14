@@ -15,9 +15,7 @@ func main() {
 	for i := 1; i < len(mySlice)+2; i++ { // This is pretty ugly
 		fmt.Printf("Enter in an integer: ")
 		fmt.Scan(&input)
-		// Add the integer to the slice
-		// Sort the slice
-		fmt.Println(fmt.Sprintf("Sum: %d", sum))
+
 		if input == "X" {
 			break
 		} else {
@@ -31,7 +29,7 @@ func main() {
 				sort.Ints(mySlice)
 				sum++
 			} else {
-				fmt.Println(intinput, " is not an integer")
+				fmt.Println("You did not enter an acceptable integer")
 			}
 		}
 		fmt.Println(fmt.Sprintf("Updated sorted list: %d", mySlice))
