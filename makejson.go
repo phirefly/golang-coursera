@@ -12,34 +12,29 @@ import (
 )
 
 type Person struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
-	Address   string `json:"address"`
+	Fullname string `json:"fullname"`
+	Address  string `json:"address"`
 }
 
 func main() {
-	var input_first string
-	var input_last string
+	var input_fullname string
 	var input_address string
 
 	newperson := &Person{
-		Firstname: "default first",
-		Lastname:  "default last",
-		Address:   "default address",
+		Fullname: "default first",
+		Address:  "default address",
 	}
 
-	fmt.Printf("Enter your first name: ")
-	fmt.Scan(&input_first)
-	newperson.Firstname = input_first
-
-	fmt.Printf("Enter your last name: ")
-	fmt.Scan(&input_last)
-	newperson.Lastname = input_last
+	fmt.Printf("Enter your full name: ")
+	bufscanner1 := bufio.NewScanner(os.Stdin)
+	bufscanner1.Scan()
+	input_fullname = bufscanner1.Text()
+	newperson.Fullname = input_fullname
 
 	fmt.Printf("Enter your address: ")
-	bufscanner := bufio.NewScanner(os.Stdin)
-	bufscanner.Scan()
-	input_address = bufscanner.Text()
+	bufscanner2 := bufio.NewScanner(os.Stdin)
+	bufscanner2.Scan()
+	input_address = bufscanner2.Text()
 	newperson.Address = input_address
 
 	barr, error := json.MarshalIndent(newperson, "", " ")
