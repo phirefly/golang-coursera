@@ -11,8 +11,8 @@ import (
 func main() {
 	var input string
 	mySlice := make([]int, 3)
-	sum := 0
-	for i := 1; i < len(mySlice)+2; i++ { // This is pretty ugly
+
+	for i := 1; i < len(mySlice); i++ {
 		fmt.Printf("Enter in an integer: ")
 		fmt.Scan(&input)
 
@@ -21,13 +21,8 @@ func main() {
 		} else {
 			if intinput, err := strconv.Atoi(input); err == nil {
 				mySlice = append(mySlice, intinput)
-				if i <= 3 { //This will break the loop if we delete 3. keeping at 2 so you can see it work.
-					mySlice = mySlice[1:4]
-				}
-
 				fmt.Println(fmt.Sprintf("You added: %d", intinput))
 				sort.Ints(mySlice)
-				sum++
 			} else {
 				fmt.Println("You did not enter an acceptable integer")
 			}
