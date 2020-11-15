@@ -14,9 +14,18 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
+type Person struct {
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
+}
+
 func main() {
+	// Create an empty slice of struct pointers
+	nameCollection := []*Person{}
+
 	fmt.Println("Welcome!")
 	// fmt.Printf("Enter the file you'd like to process: ")
 	// fmt.Scan(&input)
@@ -24,11 +33,30 @@ func main() {
 
 	file, e := os.Open("./names.txt")
 	if e != nil {
-		log.Fatal(e)
+		log.Fatal("*** Something went wrong: ", e)
 	}
 
 	scanner := bufio.NewScanner(file)
+	newperson := new(Person)
+
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+		// fmt.Println(scanner.Text())
+		words := strings.Fields(scanner.Text())
+		// fmt.Println(words[0], ":", words[1])
+
+		// Create a new struct for this person
+		newperson = new(Person)
+		newperson.Firstname = words[0]
+		newperson.Lastname = words[1]
+
+		nameCollection = append(nameCollection, newperson)
+	}
+
+	fmt.Println("***")
+	fmt.Println("Total names processed: ", len(nameCollection))
+	fmt.Println("***")
+
+	for i, v := range nameCollection {
+		fmt.Println(i, ":", v.Firstname, v.Lastname)
 	}
 }
