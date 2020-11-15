@@ -18,20 +18,20 @@ import (
 )
 
 type Person struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
+	fname string
+	lname string
 }
 
 func main() {
 	// Create an empty slice of struct pointers
 	nameCollection := []*Person{}
 
-	fmt.Println("Welcome!")
-	// fmt.Printf("Enter the file you'd like to process: ")
-	// fmt.Scan(&input)
-	// file, e := ioutil.ReadFile("./names.txt")
+	fmt.Print("Welcome! Enter the file you'd like to process: ")
+	bufscanner := bufio.NewScanner(os.Stdin)
+	bufscanner.Scan()
+	filename := bufscanner.Text()
 
-	file, e := os.Open("./names.txt")
+	file, e := os.Open(filename)
 	if e != nil {
 		log.Fatal("*** Something went wrong: ", e)
 	}
@@ -46,8 +46,8 @@ func main() {
 
 		// Create a new struct for this person
 		newperson = new(Person)
-		newperson.Firstname = words[0]
-		newperson.Lastname = words[1]
+		newperson.fname = words[0]
+		newperson.lname = words[1]
 
 		nameCollection = append(nameCollection, newperson)
 	}
@@ -57,6 +57,6 @@ func main() {
 	fmt.Println("***")
 
 	for i, v := range nameCollection {
-		fmt.Println(i, ":", v.Firstname, v.Lastname)
+		fmt.Println(i+1, ":", v.fname, v.lname)
 	}
 }
