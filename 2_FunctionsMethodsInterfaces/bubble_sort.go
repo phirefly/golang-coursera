@@ -9,11 +9,13 @@ package main
 import "fmt"
 
 func main() {
-	mySlice := make([]int, 4)
-	mySlice[0] = 1
-	mySlice[1] = 3
-	mySlice[2] = 20
-	mySlice[3] = 15
+	mySlice := make([]int, 0)
+	mySlice = append(mySlice, 1)
+	mySlice = append(mySlice, 3)
+	mySlice = append(mySlice, 20)
+	mySlice = append(mySlice, 15)
+	mySlice = append(mySlice, 33)
+	mySlice = append(mySlice, 12)
 	bubbleSort(mySlice)
 }
 
