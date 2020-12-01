@@ -17,15 +17,14 @@ func main() {
 	fmt.Printf("Enter in a list of up to ten numbers separated by commas: ")
 	fmt.Scan(&input)
 	inputNumbers := strings.Split(input, ",")
+	fmt.Println("*** Starting order: ", inputNumbers)
 	mySlice := make([]int, 0)
 
-	fmt.Println("length: ", len(inputNumbers))
 	for i := 0; i < len(inputNumbers); i++ {
 		number, err := strconv.Atoi(inputNumbers[i])
 		if err != nil {
 			// no op for now
 		}
-		fmt.Println("adding number", number)
 		mySlice = append(mySlice, number)
 	}
 
@@ -33,29 +32,22 @@ func main() {
 }
 
 func bubbleSort(digits []int) {
-	fmt.Println("digits", digits)
 	swapped := false
 
 	for i := 0; i < len(digits); i++ {
-		// fmt.Println("length: ", len(digits))
 		if i+1 != len(digits) {
 			if digits[i] > digits[i+1] {
 				swapped = true
 
 				swap()
 				temp := digits[i]
-				fmt.Println("temp", temp)
 				digits[i] = digits[i+1]
-				fmt.Println("digits[", i, "]:", digits[i])
 				digits[i+1] = temp
-				fmt.Println("digits[", i+1, "]:", digits[i+1])
-				fmt.Println(digits)
 			}
 		}
 
 		if i+1 == len(digits) && swapped == false {
-			fmt.Println("*** nothing swapped! ")
-			fmt.Println("*** Final: ", digits)
+			fmt.Println("*** Final sorted order: ", digits)
 			break
 		} else if i+1 == len(digits) {
 			bubbleSort(digits)
