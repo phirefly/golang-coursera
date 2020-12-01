@@ -6,16 +6,29 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 func main() {
+	var input string
+	fmt.Printf("Enter in a list of up to ten numbers separated by commas: ")
+	fmt.Scan(&input)
+	inputNumbers := strings.Split(input, ",")
 	mySlice := make([]int, 0)
-	mySlice = append(mySlice, 1)
-	mySlice = append(mySlice, 3)
-	mySlice = append(mySlice, 20)
-	mySlice = append(mySlice, 15)
-	mySlice = append(mySlice, 33)
-	mySlice = append(mySlice, 12)
+
+	fmt.Println("length: ", len(inputNumbers))
+	for i := 0; i < len(inputNumbers); i++ {
+		number, err := strconv.Atoi(inputNumbers[i])
+		if err != nil {
+			// no op for now
+		}
+		fmt.Println("adding number", number)
+		mySlice = append(mySlice, number)
+	}
+
 	bubbleSort(mySlice)
 }
 
