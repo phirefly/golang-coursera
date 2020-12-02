@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -17,6 +18,11 @@ func main() {
 	fmt.Printf("Enter in a list of up to ten numbers separated by commas: ")
 	fmt.Scan(&input)
 	inputNumbers := strings.Split(input, ",")
+
+	if len(inputNumbers) > 10 {
+		fmt.Println("Sorry, you input more than 10 digits")
+		os.Exit(1)
+	}
 	fmt.Println("*** Starting order: ", inputNumbers)
 	mySlice := make([]int, 0)
 
