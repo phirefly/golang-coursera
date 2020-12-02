@@ -40,9 +40,6 @@ func bubbleSort(digits []int) {
 				swapped = true
 
 				swap(&digits, i)
-				// temp := digits[i]
-				// digits[i] = digits[i+1]
-				// digits[i+1] = temp
 			}
 		}
 
@@ -57,8 +54,6 @@ func bubbleSort(digits []int) {
 }
 
 func swap(sliceOfInts *[]int, slicePos int) {
-	// fmt.Println("*** sliceOfInts ***", *sliceOfInts)
-	// fmt.Println("*** slicePos ***", slicePos)
 	temp := (*sliceOfInts)[slicePos]
 	(*sliceOfInts)[slicePos] = (*sliceOfInts)[slicePos+1]
 	(*sliceOfInts)[slicePos+1] = temp
