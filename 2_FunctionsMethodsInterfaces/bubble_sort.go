@@ -39,15 +39,15 @@ func bubbleSort(digits []int) {
 			if digits[i] > digits[i+1] {
 				swapped = true
 
-				swap()
-				temp := digits[i]
-				digits[i] = digits[i+1]
-				digits[i+1] = temp
+				swap(&digits, i)
+				// temp := digits[i]
+				// digits[i] = digits[i+1]
+				// digits[i+1] = temp
 			}
 		}
 
 		if i+1 == len(digits) && swapped == false {
-			fmt.Println("*** Final sorted order: ", digits)
+			fmt.Println("*** Bubble-sorted result: ", digits)
 			break
 		} else if i+1 == len(digits) {
 			bubbleSort(digits)
@@ -56,6 +56,10 @@ func bubbleSort(digits []int) {
 
 }
 
-func swap() {
-	fmt.Println("*** swap ***")
+func swap(sliceOfInts *[]int, slicePos int) {
+	// fmt.Println("*** sliceOfInts ***", *sliceOfInts)
+	// fmt.Println("*** slicePos ***", slicePos)
+	temp := (*sliceOfInts)[slicePos]
+	(*sliceOfInts)[slicePos] = (*sliceOfInts)[slicePos+1]
+	(*sliceOfInts)[slicePos+1] = temp
 }
