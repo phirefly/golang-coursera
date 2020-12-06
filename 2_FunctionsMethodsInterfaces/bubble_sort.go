@@ -4,6 +4,12 @@
 
 // A recurring operation in the bubble sort algorithm is the Swap operation which swaps the position of two adjacent elements in the slice. You should write a Swap() function which performs this operation. Your Swap() function should take two arguments, a slice of integers and an index value i which indicates a position in the slice. The Swap() function should return nothing, but it should swap the contents of the slice in position i with the contents in position i+1.
 
+
+// Peer Feedback (Yerdos Yebenbay)
+// in Swap no need to use pointer. Read what is SLICE.
+// Also, just use COMMA, no need to create TEMP var You could use the better way to input integer, without whole this string to int magic....
+// To wrap up, you did good job. I like your sort algorithm, but you did not use good golang features!
+
 package main
 
 import (
