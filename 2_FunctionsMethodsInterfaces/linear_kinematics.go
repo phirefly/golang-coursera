@@ -44,4 +44,20 @@ func main() {
 	fmt.Println("initial velocity:", inputInitialVelocity)
 	fmt.Println("initial displacement:", inputInitialDisplacement)
 
+	GenDisplaceFn(10, 2, 1)
+
+}
+
+func blah(t float64) float64 {
+	return 1.2345
+}
+
+func GenDisplaceFn(a float64, vo float64, so float64) func(t float64) float64 {
+	fmt.Println("This is what you called this function with...")
+	fmt.Println("a:", a)
+	fmt.Println("vo:", vo)
+	fmt.Println("so:", so)
+
+	myFunc := blah
+	return myFunc
 }
