@@ -13,16 +13,10 @@ type Animal struct {
 }
 
 func main() {
-	// Make a type called Animal which is a struct containing three fields:food, locomotion, and noise, all of which are strings
-	// Make three methods called Eat(), Move(), and Speak(). The receiver type of all of your methods should be
-	// your Animal type. The Eat() method should print the animal’s food, the Move()  should print the
-	// animal’s locomotion, and the Speak()  should print the animal’s spoken sound.
-	cow := Animal{"grass", "walk", "moo"}
-	_ = cow
-	bird := Animal{"worms", "fly", "peep"}
-	_ = bird
-	snake := Animal{"mice", "slither", "hsss"}
-	_ = snake
+	animal := make(map[string]Animal)
+	animal["cow"] = Animal{"grass", "walk", "moo"}
+	animal["bird"] = Animal{"worms", "fly", "peep"}
+	animal["snake"] = Animal{"mice", "slither", "hsss"}
 
 	var input string
 	fmt.Println("*** Welcome! Type in 'cow|bird|snake' and 'eat|move|speak'")
@@ -32,23 +26,21 @@ func main() {
 	input = bufscanner.Text()
 
 	parsedInput := strings.Split(input, " ")
-	fmt.Println("animal: ", parsedInput[0])
-	fmt.Println("action: ", parsedInput[1])
+	chosenAnimal := parsedInput[0]
 	chosenAction := parsedInput[1]
-	_ = chosenAction
-	// TODO: Translate animal to the variable. Capitalize the action verb and pass it in
-	meth := reflect.ValueOf(cow).MethodByName(strings.Title(chosenAction))
+
+	meth := reflect.ValueOf(animal[chosenAnimal]).MethodByName(strings.Title(chosenAction))
 	meth.Call(nil)
 }
 
 func (a Animal) Eat() {
-	fmt.Println("*** eats:", a.food)
+	fmt.Println("=>", a.food)
 }
 
 func (a Animal) Move() {
-	fmt.Println("*** moves:", a.locomotion)
+	fmt.Println("=>", a.locomotion)
 }
 
 func (a Animal) Speak() {
-	fmt.Println("*** speaks:", a.noise)
+	fmt.Println("=>", a.noise)
 }
