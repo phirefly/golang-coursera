@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 )
 
@@ -31,23 +32,23 @@ func main() {
 	input = bufscanner.Text()
 
 	parsedInput := strings.Split(input, " ")
-	//chosenAnimal :=
-	//chosenAction :=
 	fmt.Println("animal: ", parsedInput[0])
 	fmt.Println("action: ", parsedInput[1])
-	cow.Eat()
-	bird.Eat()
-	snake.Eat()
+	chosenAction := parsedInput[1]
+	_ = chosenAction
+	// TODO: Translate animal to the variable. Capitalize the action verb and pass it in
+	meth := reflect.ValueOf(cow).MethodByName(strings.Title(chosenAction))
+	meth.Call(nil)
 }
 
 func (a Animal) Eat() {
 	fmt.Println("*** eats:", a.food)
 }
 
-func Move() {
-	fmt.Println("*** Move")
+func (a Animal) Move() {
+	fmt.Println("*** moves:", a.locomotion)
 }
 
-func Speak() {
-	fmt.Println("*** Speak")
+func (a Animal) Speak() {
+	fmt.Println("*** speaks:", a.noise)
 }
