@@ -8,13 +8,6 @@ import (
 	"strings"
 )
 
-// TODO: Rename this to 'Animal'. This is temporary
-type AnimalInterface interface {
-Eat() string
-Move() string
-Speak() string
-}
-
 type Animal struct {
 	food, locomotion, noise string
 }
@@ -27,7 +20,8 @@ func main() {
 
 	for {
 		var input string
-		fmt.Println("*** Type in 'cow|bird|snake' and 'eat|move|speak'")
+		fmt.Println("*** Type in 'newanimal' and '<new animal name>' 'cow|bird|snake'")
+		fmt.Println("*** OR 'query' and '<animal name>' and 'eat|move|speak'")
 		fmt.Printf("> ")
 		bufscanner := bufio.NewScanner(os.Stdin)
 		bufscanner.Scan()
@@ -53,4 +47,3 @@ func (a Animal) Move() {
 func (a Animal) Speak() {
 	fmt.Println("=>", a.noise)
 }
-
