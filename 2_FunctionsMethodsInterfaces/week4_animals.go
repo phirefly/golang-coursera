@@ -16,8 +16,6 @@ type Animal interface {
 	Move()
 	Speak()
 }
-type Mover interface { Move() }
-type Eater interface { Eat() }
 
 type Cow struct {
 	food string
@@ -26,28 +24,18 @@ type Cow struct {
 }
 
 func (c Cow) Speak() {
-	fmt.Println(c.sound)
+	fmt.Println("speaking: ", c.sound)
 }
 func (c Cow) Move() {
-	fmt.Println(c.locomotion)
+	fmt.Println("moving: ", c.locomotion)
 }
 func (c Cow) Eat() {
-	fmt.Println(c.food)
+	fmt.Println("eating: ", c.food)
 }
 
 func main() {
-	//var s1 Speaker
-	//var m1 Mover
-	//var e1 Eater
-
 	var cow1 = Cow{"grass", "walk", "moo"}
 	cow1.Speak()
-
-
-	//animal := make(map[string]Animal)
-	//animal["cow"] = Animal{"grass", "walk", "moo"}
-	//animal["bird"] = Animal{"worms", "fly", "peep"}
-	//animal["snake"] = Animal{"mice", "slither", "hsss"}
 
 	for {
 		var input string
@@ -63,12 +51,22 @@ func main() {
 		chosenAnimal := parsedInput[1]
 		chosenAction := parsedInput[2]
 
+		switch command {
+		case "newanimal":
+			fmt.Println("--- new animal was chosen")
+		case "query":
+			fmt.Println("--- query was chosen")
+		default:
+			fmt.Println("--- action not known")
+		}
+
 		fmt.Println("*******")
 		fmt.Println("command: ", command)
 		fmt.Println("chosenAnimal: ", chosenAnimal)
 		fmt.Println("chosenAction: ", chosenAction)
 
-		fmt.Println("--- Created it!", chosenAction)
+		fmt.Println("--- Created it!---")
+		fmt.Println("")
 
 		//meth := reflect.ValueOf(cow1[chosenAnimal]).MethodByName(strings.Title(chosenAction))
 		//meth.Call(nil)
