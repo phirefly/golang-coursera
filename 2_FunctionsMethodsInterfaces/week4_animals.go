@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"go/types"
 	"os"
 	"strings"
 )
@@ -72,6 +73,11 @@ func main() {
 	myMap["bird"] = Bird{"worms", "fly", "peep"}
 	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
+	var aliasMap = make(map[string]types.Slice)
+	//append(aliasMap["cow"], "blahcow")
+	//append(aliasMap["bird"], "blahbird")
+	//append(aliasMap["snake"], "blahsnake")
+	//
 	for {
 		var input string
 		fmt.Println("*** Type in 'newanimal' and '<new animal name>' and 'cow|bird|snake'")
@@ -84,7 +90,7 @@ func main() {
 		parsedInput := strings.Split(input, " ")
 		command := parsedInput[0]
 		chosenAnimal := parsedInput[1]
-		//chosenAction := parsedInput[2]
+		chosenName := parsedInput[2]
 
 		switch command {
 		case "newanimal":
@@ -95,6 +101,12 @@ func main() {
 			a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
 			_ = a1
 			myAnimal.Speak()
+
+			//	CURRENT: Record the name in a map of aliases
+			//  Getting... ./week4_animals.go:106:10: first argument to append must be slice; have struct { types.elem types.Type }
+			append(aliasMap["cow"], chosenName)
+			fmt.Println("**** Updated aliases")
+			fmt.Println(aliasMap[chosenAnimal])
 
 
 		case "query":
