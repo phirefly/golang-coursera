@@ -67,12 +67,10 @@ func (s Snake) Eat() {
 
 
 func main() {
-	//This doesn't work for some reason
-	//var myMap = make(map[string]types.Struct)
-	//myMap["cow"] = Cow{"grass", "walk", "moo"}
-
-	//myMap["bird"] = Bird{"grass", "walk", "moo"}
-	//myMap["snake"] = Snake{"grass", "walk", "moo"}
+	var myMap = make(map[string]Animal)
+	myMap["cow"] = Cow{"grass", "walk", "moo"}
+	myMap["bird"] = Bird{"worms", "fly", "peep"}
+	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
 	for {
 		var input string
@@ -85,22 +83,18 @@ func main() {
 
 		parsedInput := strings.Split(input, " ")
 		command := parsedInput[0]
-		//chosenAnimal := parsedInput[1]
+		chosenAnimal := parsedInput[1]
 		//chosenAction := parsedInput[2]
 
 		switch command {
 		case "newanimal":
 			fmt.Println("--- new animal was chosen")
 
-			// CURRENT: take the entered animal type, and create a new instance of its
-			// corresponding struct
-			//var animal1 = myMap[chosenAnimal]
-			//animal1.Speak()
 			var a1 Animal
-			var myCow = Cow{"grass", "walk", "moo"}
-			a1 = myCow //Now the concrete type that a1 Animal is assigned to is myCow
+			var myAnimal = myMap[chosenAnimal]
+			a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
 			_ = a1
-			myCow.Speak()
+			myAnimal.Speak()
 
 
 		case "query":
