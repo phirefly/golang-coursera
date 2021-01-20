@@ -69,9 +69,9 @@ func main() {
 	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
 	var aliasMap = map[string][]string{
-		"cow": {"testcow"},
-		"bird": {"testbird"},
-		"snake": {"testsnake"},
+		"cow": {"defaultcow"},
+		"bird": {"defaultbird"},
+		"snake": {"defaultsnake"},
 	}
 
 	for {
