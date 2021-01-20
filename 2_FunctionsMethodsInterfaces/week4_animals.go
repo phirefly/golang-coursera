@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"go/types"
 	"os"
 	"strings"
 )
@@ -73,7 +72,11 @@ func main() {
 	myMap["bird"] = Bird{"worms", "fly", "peep"}
 	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
-	var aliasMap = make(map[string]types.Slice)
+	var aliasMap = map[string][]string{
+		"cow": {"testcow"},
+		"bird": {"testbird"},
+		"snake": {"testsnake"},
+	}
 	//append(aliasMap["cow"], "blahcow")
 	//append(aliasMap["bird"], "blahbird")
 	//append(aliasMap["snake"], "blahsnake")
@@ -104,9 +107,13 @@ func main() {
 
 			//	CURRENT: Record the name in a map of aliases
 			//  Getting... ./week4_animals.go:106:10: first argument to append must be slice; have struct { types.elem types.Type }
-			append(aliasMap["cow"], chosenName)
+			res := append(aliasMap[chosenAnimal], chosenName)
 			fmt.Println("**** Updated aliases")
-			fmt.Println(aliasMap[chosenAnimal])
+			fmt.Println("res: ", res)
+
+			aliasMap[chosenAnimal] = res
+			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
+			//fmt.Println(aliasMap[chosenAnimal])
 
 
 		case "query":
