@@ -7,10 +7,6 @@ import (
 	"strings"
 )
 
-//type Animal struct {
-//	food, locomotion, noise string
-//}
-//
 type Animal interface {
 	Eat()
 	Move()
@@ -77,10 +73,7 @@ func main() {
 		"bird": {"testbird"},
 		"snake": {"testsnake"},
 	}
-	//append(aliasMap["cow"], "blahcow")
-	//append(aliasMap["bird"], "blahbird")
-	//append(aliasMap["snake"], "blahsnake")
-	//
+
 	for {
 		var input string
 		fmt.Println("*** Type in 'newanimal' and '<new animal name>' and 'cow|bird|snake'")
@@ -97,24 +90,15 @@ func main() {
 
 		switch command {
 		case "newanimal":
-			fmt.Println("--- new animal was chosen")
-
 			var a1 Animal
 			var myAnimal = myMap[chosenAnimal]
 			a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
 			_ = a1
 			myAnimal.Speak()
 
-			//	CURRENT: Record the name in a map of aliases
-			//  Getting... ./week4_animals.go:106:10: first argument to append must be slice; have struct { types.elem types.Type }
 			res := append(aliasMap[chosenAnimal], chosenName)
-			fmt.Println("**** Updated aliases")
-			fmt.Println("res: ", res)
-
 			aliasMap[chosenAnimal] = res
 			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
-			//fmt.Println(aliasMap[chosenAnimal])
-
 
 		case "query":
 			fmt.Println("--- query was chosen")
@@ -122,38 +106,6 @@ func main() {
 			fmt.Println("--- action not known")
 		}
 
-		//fmt.Println("*******")
-		//fmt.Println("command: ", command)
-		//fmt.Println("chosenAnimal: ", chosenAnimal)
-		//fmt.Println("chosenAction: ", chosenAction)
-		//
-		//fmt.Println("--- Created it!---")
-		//fmt.Println("")
-
-		//meth := reflect.ValueOf(cow1[chosenAnimal]).MethodByName(strings.Title(chosenAction))
-		//meth.Call(nil)
 	}
 }
 
-//func (a Animal) Eat() {
-//	fmt.Println("=>", a.food)
-//}
-
-//func (a Animal) Move() {
-//	fmt.Println("=>", a.locomotion)
-//}
-//
-//func (a Animal) Speak() {
-//	fmt.Println("=>", a.noise)
-//}
-//
-//func AnimalEat (a Animal) bool {
-//	switch := sh := a. (type) {
-//		case Cow:
-//			fmt.Printf("Cow")
-//		case Bird:
-//			fmt.Printf("Bird")
-//		case Snake:
-//			fmt.Printf("Snake")
-//		}
-//}
