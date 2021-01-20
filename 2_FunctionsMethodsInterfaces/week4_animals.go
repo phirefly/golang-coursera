@@ -88,24 +88,34 @@ func main() {
 		chosenAnimal := parsedInput[1]
 		chosenName := parsedInput[2]
 
+		var a1 Animal
+		var myAnimal = myMap[chosenAnimal]
+		a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
+		_ = a1
+
 		switch command {
 		case "newanimal":
-			var a1 Animal
-			var myAnimal = myMap[chosenAnimal]
-			a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
-			_ = a1
-			myAnimal.Speak()
-
 			res := append(aliasMap[chosenAnimal], chosenName)
 			aliasMap[chosenAnimal] = res
 			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
 
 		case "query":
-			fmt.Println("--- query was chosen")
+
+			switch chosenName {
+			case "eat":
+				myAnimal.Eat()
+			case "move":
+				myAnimal.Move()
+			case "speak":
+				myAnimal.Speak()
+			default:
+				fmt.Println("--- wrong action!")
+			}
+
+
 		default:
 			fmt.Println("--- action not known")
 		}
-
 	}
 }
 
