@@ -61,6 +61,15 @@ func (s Snake) Eat() {
 	fmt.Println("eating: ", s.food)
 }
 
+func contains(arr[]string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
+}
+
 
 func main() {
 	var myMap = make(map[string]Animal)
@@ -88,10 +97,6 @@ func main() {
 		chosenAnimal := parsedInput[1]
 		chosenName := parsedInput[2]
 
-		var a1 Animal
-		var myAnimal = myMap[chosenAnimal]
-		a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
-		_ = a1
 
 		switch command {
 		case "newanimal":
@@ -100,16 +105,24 @@ func main() {
 			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
 
 		case "query":
+			if (contains(aliasMap["cow"], chosenAnimal)) { // CURRENT: Look inside the alias group for this instead of myMap and iterate through the types
+				var myAnimal = myMap["cow"]
+				var a1 Animal
+				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
+				_ = a1
 
-			switch chosenName {
-			case "eat":
-				myAnimal.Eat()
-			case "move":
-				myAnimal.Move()
-			case "speak":
-				myAnimal.Speak()
-			default:
-				fmt.Println("--- wrong action!")
+				switch chosenName {
+				case "eat":
+					myAnimal.Eat()
+				case "move":
+					myAnimal.Move()
+				case "speak":
+					myAnimal.Speak()
+				default:
+					fmt.Println("--- wrong action!")
+				}
+			} else {
+				fmt.Println("--- Your animal wasn't found. Try again. ")
 			}
 
 
