@@ -78,9 +78,9 @@ func main() {
 	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
 	var aliasMap = map[string][]string{
-		"cow": {"defaultcow"},
-		"bird": {"defaultbird"},
-		"snake": {"defaultsnake"},
+		"cow": {"cow"},
+		"bird": {"bird"},
+		"snake": {"snake"},
 	}
 
 	for {
@@ -105,8 +105,40 @@ func main() {
 			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
 
 		case "query":
-			if (contains(aliasMap["cow"], chosenAnimal)) { // CURRENT: Look inside the alias group for this instead of myMap and iterate through the types
+			if (contains(aliasMap["cow"], chosenAnimal)) { // CURRENT: Automatically check all of the types
 				var myAnimal = myMap["cow"]
+				var a1 Animal
+				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
+				_ = a1
+
+				switch chosenName {
+				case "eat":
+					myAnimal.Eat()
+				case "move":
+					myAnimal.Move()
+				case "speak":
+					myAnimal.Speak()
+				default:
+					fmt.Println("--- wrong action!")
+				}
+			} else if (contains(aliasMap["bird"], chosenAnimal)) { // CURRENT: Automatically check all of the types
+				var myAnimal = myMap["bird"]
+				var a1 Animal
+				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
+				_ = a1
+
+				switch chosenName {
+				case "eat":
+					myAnimal.Eat()
+				case "move":
+					myAnimal.Move()
+				case "speak":
+					myAnimal.Speak()
+				default:
+					fmt.Println("--- wrong action!")
+				}
+			} else if (contains(aliasMap["snake"], chosenAnimal)) { // CURRENT: Automatically check all of the types
+				var myAnimal = myMap["snake"]
 				var a1 Animal
 				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
 				_ = a1
