@@ -72,11 +72,13 @@ func contains(arr[]string, str string) bool {
 
 
 func main() {
+	// Create original animal types. A map of animals that point to structs
 	var myMap = make(map[string]Animal)
 	myMap["cow"] = Cow{"grass", "walk", "moo"}
 	myMap["bird"] = Bird{"worms", "fly", "peep"}
 	myMap["snake"] = Snake{"mice", "slither", "hsss"}
 
+	// Store aliases to original animal types
 	var aliasMap = map[string][]string{
 		"cow": {"cow"},
 		"bird": {"bird"},
@@ -85,7 +87,7 @@ func main() {
 
 	for {
 		var input string
-		fmt.Println("*** Type in 'newanimal' and '<new animal name>' and 'cow|bird|snake'")
+		fmt.Println("*** Type in 'newanimal' and 'cow|bird|snake' and '<new animal name>'")
 		fmt.Println("*** OR 'query' and '<animal name>' and 'eat|move|speak'")
 		fmt.Printf("> ")
 		bufscanner := bufio.NewScanner(os.Stdin)
@@ -105,58 +107,32 @@ func main() {
 			fmt.Println("==> updated aliasMap: ", aliasMap[chosenAnimal])
 
 		case "query":
-			if (contains(aliasMap["cow"], chosenAnimal)) { // CURRENT: Automatically check all of the types
-				var myAnimal = myMap["cow"]
-				var a1 Animal
-				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
-				_ = a1
+			animalArr := [3]string{"cow","bird","snake"}
+			var isFound = false
+			for index, element := range animalArr {
+				_ = index
+				if (contains(aliasMap[element], chosenAnimal)) {
+					isFound = true
+					var myAnimal = myMap[element]
+					var a1 Animal
+					a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
+					_ = a1
 
-				switch chosenName {
-				case "eat":
-					myAnimal.Eat()
-				case "move":
-					myAnimal.Move()
-				case "speak":
-					myAnimal.Speak()
-				default:
-					fmt.Println("--- wrong action!")
+					switch chosenName {
+					case "eat":
+						myAnimal.Eat()
+					case "move":
+						myAnimal.Move()
+					case "speak":
+						myAnimal.Speak()
+					default:
+						fmt.Println("--- wrong action!")
+					}
 				}
-			} else if (contains(aliasMap["bird"], chosenAnimal)) { // CURRENT: Automatically check all of the types
-				var myAnimal = myMap["bird"]
-				var a1 Animal
-				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
-				_ = a1
-
-				switch chosenName {
-				case "eat":
-					myAnimal.Eat()
-				case "move":
-					myAnimal.Move()
-				case "speak":
-					myAnimal.Speak()
-				default:
-					fmt.Println("--- wrong action!")
-				}
-			} else if (contains(aliasMap["snake"], chosenAnimal)) { // CURRENT: Automatically check all of the types
-				var myAnimal = myMap["snake"]
-				var a1 Animal
-				a1 = myAnimal //Now the concrete type that a1 Animal is assigned to is myAnimal
-				_ = a1
-
-				switch chosenName {
-				case "eat":
-					myAnimal.Eat()
-				case "move":
-					myAnimal.Move()
-				case "speak":
-					myAnimal.Speak()
-				default:
-					fmt.Println("--- wrong action!")
-				}
-			} else {
-				fmt.Println("--- Your animal wasn't found. Try again. ")
 			}
-
+		if (isFound == false) {
+			fmt.Println("--- Your animal wasn't found. Try again!")
+		}
 
 		default:
 			fmt.Println("--- action not known")
